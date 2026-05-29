@@ -7,14 +7,28 @@ import Footer from '../components/Footer.astro';
 import { GALLERY_TAG, HERO_TAG, getHomePagePhotos } from '../data/photos.js';
 
 const { heroPhotos, galleryPhotos } = await getHomePagePhotos();
+const pageTitle = 'Skyline Lodge - Blue Ridge Cabin Rental';
+const pageDescription = 'Blue Ridge mountain cabin rental with beautiful views, black bear character, and easy access to nature and town.';
+const pageUrl = new URL('/', Astro.site);
+const shareImage = new URL('/skyline-lodge-logo.png', Astro.site);
 ---
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/skyline-lodge-logo.png" />
-    <title>Skyline Lodge - Blue Ridge Cabin Rental</title>
-    <meta name="description" content="Blue Ridge mountain cabin rental with beautiful views, black bear character, and easy access to nature and town." />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={pageUrl.href} />
+    <meta property="og:image" content={shareImage.href} />
+    <meta property="og:image:alt" content="Skyline Lodge logo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={shareImage.href} />
   </head>
   <body class="site-shell">
     <Navbar active="/" />

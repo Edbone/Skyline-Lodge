@@ -2,14 +2,28 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+const pageTitle = 'Contact — Skyline Lodge';
+const pageDescription = 'Contact Skyline Lodge for booking inquiries and rental details.';
+const pageUrl = new URL('/contact/', Astro.site);
+const shareImage = new URL('/skyline-lodge-logo.png', Astro.site);
 ---
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/skyline-lodge-logo.png" />
-    <title>Contact — Skyline Lodge</title>
-    <meta name="description" content="Contact Skyline Lodge for booking inquiries and rental details." />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={pageUrl.href} />
+    <meta property="og:image" content={shareImage.href} />
+    <meta property="og:image:alt" content="Skyline Lodge logo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={shareImage.href} />
   </head>
   <body class="site-shell">
     <Navbar active="/contact" />
