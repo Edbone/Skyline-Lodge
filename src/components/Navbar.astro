@@ -1,0 +1,54 @@
+---
+const { active } = Astro.props;
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/reviews', label: 'Reviews' },
+  { href: '/contact', label: 'Contact' },
+  { href: '/recommendations', label: 'Our Favorites' }
+];
+---
+<nav class="navbar" aria-label="Primary navigation">
+  <div class="navbar-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark">Skyline</span>
+      <span class="brand-name">Lodge</span>
+    </a>
+
+    <button class="hamburger" type="button" aria-expanded="false" aria-controls="nav-links-mobile" aria-label="Toggle navigation">
+      <span class="hamburger-icon"></span>
+    </button>
+
+    <div class="nav-links">
+      {links.map((link) => (
+        <a class:list={['nav-link', active === link.href && 'is-active']} href={link.href} aria-current={active === link.href ? 'page' : undefined}>{link.label}</a>
+      ))}
+    </div>
+
+    <div id="nav-links-mobile" class="nav-links-mobile">
+      {links.map((link) => (
+        <a class:list={['nav-link', active === link.href && 'is-active']} href={link.href} aria-current={active === link.href ? 'page' : undefined}>{link.label}</a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  const nav = document.querySelector('.navbar');
+  const button = nav?.querySelector('.hamburger');
+  const mobileMenu = nav?.querySelector('.nav-links-mobile');
+
+  if (button instanceof HTMLButtonElement && mobileMenu instanceof HTMLElement) {
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', String(!expanded));
+      mobileMenu.classList.toggle('is-open', !expanded);
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        button.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('is-open');
+      });
+    });
+  }
+</script>

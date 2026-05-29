@@ -1,0 +1,15 @@
+---
+const { review } = Astro.props;
+---
+<article class="card review-card">
+  <div class="review-stars" aria-label={`${review.rating} stars`}>
+    {Array.from({ length: review.rating }).map(() => <span>★</span>)}
+    {Array.from({ length: 5 - review.rating }).map(() => <span style="opacity: 0.25;">★</span>)}
+  </div>
+  <h3>{review.title}</h3>
+  <p class="review-text">“{review.text}”</p>
+  <div class="review-meta">
+    <p>{review.name}</p>
+    <span>{review.date}</span>
+  </div>
+</article>

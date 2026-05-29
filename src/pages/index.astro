@@ -1,0 +1,175 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import HeroCarousel from '../components/HeroCarousel.astro';
+import PhotoSection from '../components/PhotoSection.astro';
+import Footer from '../components/Footer.astro';
+import { GALLERY_TAG, HERO_TAG, getHomePagePhotos } from '../data/photos.js';
+
+const { heroPhotos, galleryPhotos } = await getHomePagePhotos();
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skyline Lodge - Blue Ridge Cabin Rental</title>
+    <meta name="description" content="Blue Ridge mountain cabin rental with beautiful views, black bear character, and easy access to nature and town." />
+  </head>
+  <body class="site-shell">
+    <Navbar active="/" />
+
+    <main>
+      <section class="hero-shell">
+        <HeroCarousel images={heroPhotos} />
+      </section>
+
+      <section class="section">
+        <div class="container overlap-panel">
+          <div class="page-intro">
+            <div>
+              <p class="eyebrow">Reasons to book</p>
+              <h2 class="section-title">A Blue Ridge mountain cabin made for family time, nature, and quiet getaway weekends</h2>
+            </div>
+            <div class="stats-grid">
+              <div class="stats-card card">
+                <span>1</span>
+                <div>
+                  <p style="margin:0; font-weight:700;">Beautiful mountain views</p>
+                  <p style="margin:0; color: var(--muted);">Big scenery in every direction</p>
+                </div>
+              </div>
+              <div class="stats-card card">
+                <span>2</span>
+                <div>
+                  <p style="margin:0; font-weight:700;">Dog friendly</p>
+                  <p style="margin:0; color: var(--muted);">Bring your loyal sidekick</p>
+                </div>
+              </div>
+              <div class="stats-card card">
+                <span>3</span>
+                <div>
+                  <p style="margin:0; font-weight:700;">Fully stocked kitchen</p>
+                  <p style="margin:0; color: var(--muted);">Ready for family meals and snacks</p>
+                </div>
+              </div>
+              <div class="stats-card card">
+                <span>4</span>
+                <div>
+                  <p style="margin:0; font-weight:700;">Fun game room</p>
+                  <p style="margin:0; color: var(--muted);">Foosball, movies, Xbox, and more</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--tight">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">About the cabin</p>
+              <h2 class="section-title">Black bear charm, mountain views, and room for everyone to settle in</h2>
+            </div>
+            <p class="section-subtitle">Skyline Lodge is ideal for families or a romantic getaway. Tucked inside the gated community of Black Ankle Mountain, it offers privacy and solitude while keeping you just minutes from the adventures of the Aska Adventure Area.</p>
+          </div>
+
+          <div class="grid grid-3" style="margin-top: 2rem;">
+            <div class="card card-inner">
+              <h3>Gather on the main floor</h3>
+              <p>The huge main level offers sweeping views, a cozy gas log fireplace, and seemingly endless windows that make the mountains part of the room.</p>
+            </div>
+            <div class="card card-inner">
+              <h3>Black bear personality</h3>
+              <p>With black bear-themed decor and upscale rustic furniture, the cabin has the fun, welcoming North Georgia character that makes it feel just right.</p>
+            </div>
+            <div class="card card-inner">
+              <h3>Made for all seasons</h3>
+              <p>Frolic here in the summertime or hibernate in winter. Skyline Lodge has everything you need for a memorable stay no matter the season.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-2" style="margin-top: 1.5rem;">
+            <div class="card card-inner">
+              <h3>The bear's den downstairs</h3>
+              <p>The downstairs game room is a playground for cubs, with plenty of space to romp, foosball, movies, Xbox One, board games, and a bedroom with two full beds, its own bathroom, and even a Barbie house for the kids.</p>
+            </div>
+            <div class="card card-inner">
+              <h3>Master suite with a view</h3>
+              <p>Upstairs, the master bedroom has soaring vaulted ceilings, a hand-carved hickory Amish king bed, a private bath, and its own deck for quiet mornings in the mountains.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--tight">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Amenities</p>
+              <h2 class="section-title">What makes Skyline Lodge special</h2>
+            </div>
+            <p class="section-subtitle">Whether you spend the day floating the Toccoa, hiking, fly fishing, or exploring town, the cabin is set up to make the return home just as memorable as the outing.</p>
+          </div>
+
+          <div class="feature-band">
+            <div class="feature-band-copy">
+              <p class="mini-label">Why guests choose it</p>
+              <h3>Everything you need is right here at your fingertips</h3>
+              <p>Grill outside for the whole family, watch the sunset from the wine deck, take a moonlit dip in the hot tub, or gather around the fire pit for stargazing on cooler evenings.</p>
+            </div>
+            <div class="grid grid-4">
+              <div class="card card-inner">
+                <h4>Sleeps 8 comfortably</h4>
+                <p>King, queen, two full-size beds, and a queen sleeper sofa make it easy for families and groups to spread out.</p>
+              </div>
+              <div class="card card-inner">
+                <h4>Game room fun</h4>
+                <p>Foosball, air hockey, board games, a 55-inch Smart TV with Blu-ray player, and Xbox One keep everyone entertained.</p>
+              </div>
+              <div class="card card-inner">
+                <h4>Outdoor living</h4>
+                <p>Main and lower decks, Adirondack chairs, a Weber gas grill, hot tub for 6, and a large fire pit with benches.</p>
+              </div>
+              <div class="card card-inner">
+                <h4>Thoughtful family extras</h4>
+                <p>Baby gates, bed rails, a big Barbie house, washer and dryer, Smart TVs, and unlimited high-speed WiFi.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--tight">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Location highlight</p>
+              <h2 class="section-title">Blue Ridge, Georgia</h2>
+            </div>
+            <p class="section-subtitle">Skyline Lodge gives you a peaceful mountain home base while keeping you close to tubing, hiking, fly fishing, scenic drives, shopping, dining, and spa days in and around Blue Ridge.</p>
+          </div>
+
+          <div class="grid grid-2 location-grid" style="margin-top: 2rem; gap: 2rem;">
+            <div class="card card-inner location-copy">
+              <h3>Blue Ridge, Georgia</h3>
+              <p>Spend the day in the Aska Adventure Area, float the Toccoa, head into town for shopping and a little pampering, or simply return to the cabin in time for a spectacular sunset and a quiet evening under the stars.</p>
+              <div class="location-pills">
+                <span>Aska Adventure Area</span>
+                <span>Toccoa River days</span>
+                <span>Black Ankle Mountain</span>
+              </div>
+            </div>
+            <div class="card location-image" style="overflow: hidden; min-height: 240px;">
+              <img src="/downtown-blueridge.jpg" alt="Downtown Blue Ridge and the surrounding mountains at sunset" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <PhotoSection images={galleryPhotos} />
+    </main>
+
+    <Footer />
+  </body>
+</html>

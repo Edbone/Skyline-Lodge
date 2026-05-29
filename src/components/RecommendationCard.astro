@@ -1,0 +1,12 @@
+---
+const { item } = Astro.props;
+---
+<div class="card recommendation-card">
+  <div class="card-inner">
+    <h3>
+      <a href={item.href} target="_blank" rel="noreferrer">{item.title}</a>
+    </h3>
+    <p>{item.description}</p>
+    <span>{item.note}</span>
+  </div>
+</div>

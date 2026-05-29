@@ -1,0 +1,60 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { driveTimes, recommendations } from '../data/recommendations.js';
+import RecommendationCard from '../components/RecommendationCard.astro';
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Favorites — Skyline Lodge</title>
+    <meta name="description" content="Our favorite restaurants, attractions, and local spots around Blue Ridge near Skyline Lodge." />
+  </head>
+  <body class="site-shell">
+    <Navbar active="/recommendations" />
+    <main>
+      <section class="section page-hero">
+        <div class="container">
+          <p class="eyebrow">Locals love</p>
+          <h1 class="section-title">Our Favorite Local Restaurants & Attractions</h1>
+          <p class="section-subtitle">Whether you are looking for a great meal, a scenic hike, or a relaxing afternoon exploring the mountains, these are some of our favorite spots near Skyline Lodge.</p>
+
+          <div class="recommendation-grid" style="margin-top: 2.5rem;">
+            {recommendations.map((group) => (
+              <section class="card card-inner recommendation-group">
+                <div class="recommendation-group-head">
+                  <p class="mini-label">{group.eyebrow}</p>
+                  <h2>{group.category}</h2>
+                </div>
+                <div class="grid grid-2" style="margin-top: 1rem;">
+                  {group.items.map((item) => (
+                    <RecommendationCard item={item} />
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+
+          <section class="card card-inner drive-times-card">
+            <div class="recommendation-group-head">
+              <p class="mini-label">Planning help</p>
+              <h2>Approximate Drive Times From Skyline Lodge</h2>
+            </div>
+            <div class="drive-times-list">
+              {driveTimes.map((stop) => (
+                <div class="drive-time-row">
+                  <span>{stop.place}</span>
+                  <strong>{stop.time}</strong>
+                </div>
+              ))}
+            </div>
+            <p class="drive-times-note">We hope you enjoy exploring Blue Ridge as much as we do. If you discover a favorite spot during your stay, we would love to hear about it!</p>
+          </section>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>

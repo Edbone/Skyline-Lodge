@@ -1,0 +1,22 @@
+---
+const { images } = Astro.props;
+---
+<section class="section section--tight" id="photo-preview">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Gallery preview</p>
+        <h2 class="section-title">A photo-first retreat</h2>
+      </div>
+      <p class="section-subtitle">This gallery is wired to load directly from your Cloudinary "Lodge" tag feed, so adding or removing Lodge photos in Cloudinary updates the site without changing the component structure.</p>
+    </div>
+
+    <div class="preview-grid" style="margin-top: 2rem;">
+      {images.map((image) => (
+        <div class="preview-card card">
+          <img src={image.src} alt={image.alt} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
