@@ -111,6 +111,10 @@ export async function getHomePagePhotos() {
   return { heroPhotos, galleryPhotos };
 }
 
+export async function getGalleryPhotos() {
+  return fetchPhotosByTag(GALLERY_TAG, fallbackGalleryPhotos);
+}
+
 export { CLOUDINARY_CLOUD_NAME, HERO_TAG, GALLERY_TAG };
 
 // Hero photos are loaded from the Cloudinary tag "Main Lodge".

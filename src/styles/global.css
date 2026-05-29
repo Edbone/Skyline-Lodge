@@ -442,6 +442,8 @@ textarea {
   overflow: hidden;
   border-radius: 28px;
   isolation: isolate;
+  padding: 0;
+  cursor: zoom-in;
 }
 
 .preview-card::after {
@@ -460,6 +462,39 @@ textarea {
 
 .preview-card:hover img {
   transform: scale(1.04);
+}
+
+.gallery-lightbox {
+  width: min(92vw, 1200px);
+  padding: 1rem;
+  border: none;
+  background: transparent;
+}
+
+.gallery-lightbox::backdrop {
+  background: rgba(10, 8, 6, 0.78);
+  backdrop-filter: blur(6px);
+}
+
+.gallery-lightbox-image {
+  width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 24px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+}
+
+.gallery-lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--text);
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .stats-grid {
@@ -493,16 +528,35 @@ textarea {
 .feature-band {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
+  gap: 2rem;
+  margin-top: 2.25rem;
 }
 
 .feature-band-copy {
-  padding: 2rem;
+  padding: 2.25rem;
   border: 1px solid rgba(159, 114, 72, 0.12);
   border-radius: var(--radius);
   background: linear-gradient(160deg, #fffaf4 0%, #efe4d5 100%);
   box-shadow: var(--shadow-soft);
+}
+
+.amenities-grid {
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.amenity-card {
+  min-height: 100%;
+  padding: 2rem 1.85rem;
+}
+
+.amenity-card h4 {
+  margin: 0 0 0.65rem;
+  font-size: 1.08rem;
+}
+
+.amenity-card p {
+  margin: 0;
 }
 
 .feature-band-copy h3,
@@ -689,13 +743,9 @@ textarea {
 .recommendation-card h3 a {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-}
-
-.recommendation-card h3 a::after {
-  content: '↗';
-  font-size: 0.9em;
-  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
 }
 
 .recommendation-card p,

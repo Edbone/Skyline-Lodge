@@ -1,0 +1,33 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import PhotoSection from '../components/PhotoSection.astro';
+import Footer from '../components/Footer.astro';
+import { getGalleryPhotos } from '../data/photos.js';
+
+const galleryPhotos = await getGalleryPhotos();
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/skyline-lodge-logo.png" />
+    <title>Photos — Skyline Lodge</title>
+    <meta name="description" content="Browse photos of Skyline Lodge, a Blue Ridge mountain cabin with beautiful views and cozy spaces." />
+  </head>
+  <body class="site-shell">
+    <Navbar active="/photos" />
+    <main>
+      <section class="section page-hero">
+        <PhotoSection
+          images={galleryPhotos}
+          eyebrow="Photo gallery"
+          title="Photos"
+          subtitle="Browse the full Skyline Lodge gallery. Click any photo to enlarge it."
+          sectionId="photos-gallery"
+        />
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>

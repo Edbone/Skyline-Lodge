@@ -1,22 +1,81 @@
 ---
-const { images } = Astro.props;
+const {
+  images,
+  eyebrow = 'Gallery preview',
+  title = 'A photo-first retreat',
+  subtitle = 'This gallery is wired to load directly from your Cloudinary "Lodge" tag feed, so adding or removing Lodge photos in Cloudinary updates the site without changing the component structure.',
+  sectionId = 'photo-preview'
+} = Astro.props;
 ---
-<section class="section section--tight" id="photo-preview">
+<section class="section section--tight photo-gallery-section" id={sectionId}>
   <div class="container">
     <div class="section-heading">
       <div>
-        <p class="eyebrow">Gallery preview</p>
-        <h2 class="section-title">A photo-first retreat</h2>
+        <p class="eyebrow">{eyebrow}</p>
+        <h2 class="section-title">{title}</h2>
       </div>
-      <p class="section-subtitle">This gallery is wired to load directly from your Cloudinary "Lodge" tag feed, so adding or removing Lodge photos in Cloudinary updates the site without changing the component structure.</p>
+      <p class="section-subtitle">{subtitle}</p>
     </div>
 
     <div class="preview-grid" style="margin-top: 2rem;">
       {images.map((image) => (
-        <div class="preview-card card">
+        <button
+          class="preview-card card gallery-trigger"
+          type="button"
+          data-gallery-src={image.src}
+          data-gallery-alt={image.alt}
+          aria-label={`Open photo: ${image.alt}`}>
           <img src={image.src} alt={image.alt} />
-        </div>
+        </button>
       ))}
     </div>
   </div>
+
+  <dialog class="gallery-lightbox">
+    <button class="gallery-lightbox-close" type="button" aria-label="Close photo">Close</button>
+    <img class="gallery-lightbox-image" src="" alt="" />
+  </dialog>
 </section>
+
+<script is:inline>
+  document.querySelectorAll('.photo-gallery-section').forEach((section) => {
+    if (!(section instanceof HTMLElement) || section.dataset.lightboxBound === 'true') return;
+
+    const lightbox = section.querySelector('.gallery-lightbox');
+    const lightboxImage = lightbox?.querySelector('.gallery-lightbox-image');
+    const closeButton = lightbox?.querySelector('.gallery-lightbox-close');
+    const triggers = section.querySelectorAll('.gallery-trigger');
+
+    if (!(lightbox instanceof HTMLDialogElement) || !(lightboxImage instanceof HTMLImageElement)) return;
+
+    section.dataset.lightboxBound = 'true';
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const src = trigger.getAttribute('data-gallery-src');
+        const alt = trigger.getAttribute('data-gallery-alt') ?? '';
+
+        if (!src) return;
+
+        lightboxImage.src = src;
+        lightboxImage.alt = alt;
+        lightbox.showModal();
+      });
+    });
+
+    closeButton?.addEventListener('click', () => lightbox.close());
+
+    lightbox.addEventListener('click', (event) => {
+      const bounds = lightbox.getBoundingClientRect();
+      const clickedOutside =
+        event.clientX < bounds.left ||
+        event.clientX > bounds.right ||
+        event.clientY < bounds.top ||
+        event.clientY > bounds.bottom;
+
+      if (clickedOutside) {
+        lightbox.close();
+      }
+    });
+  });
+</script>
