@@ -1,5 +1,6 @@
 ---
 const images = Astro.props.images as Array<{ src: string; alt: string; title?: string; caption?: string }>;
+const bookingUrl = 'https://www.escapetoblueridge.com/cabins/skyline-lodge';
 const animationStyles = images
   .map((_, index) => `.hero-slide:nth-child(${index + 1}) { animation-delay: ${index * 5}s; }`)
   .join('\n');
@@ -19,7 +20,7 @@ const animationStyles = images
       <h1>Skyline Lodge</h1>
       <div class="button-group">
         <a class="button button-primary" href="#photo-preview">View Photos</a>
-        <a class="button button-secondary" href="/contact">Contact Us</a>
+        <a class="button button-secondary" href={bookingUrl} target="_blank" rel="noreferrer">Book Now</a>
       </div>
 
       <div class="hero-highlights" aria-label="Property highlights">

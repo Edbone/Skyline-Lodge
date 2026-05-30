@@ -1,11 +1,12 @@
 ---
 const { active } = Astro.props;
+const bookingUrl = 'https://www.escapetoblueridge.com/cabins/skyline-lodge';
 const links = [
   { href: '/', label: 'Home' },
   { href: '/photos', label: 'Photos' },
   { href: '/reviews', label: 'Reviews' },
-  { href: '/contact', label: 'Contact' },
-  { href: '/recommendations', label: 'Our Favorites' }
+  { href: '/recommendations', label: 'Our Favorites' },
+  { href: bookingUrl, label: 'Book Now', external: true }
 ];
 ---
 <nav class="navbar" aria-label="Primary navigation">
@@ -21,13 +22,23 @@ const links = [
 
     <div class="nav-links">
       {links.map((link) => (
-        <a class:list={['nav-link', active === link.href && 'is-active']} href={link.href} aria-current={active === link.href ? 'page' : undefined}>{link.label}</a>
+        <a
+          class:list={['nav-link', link.external && 'nav-link-booking', active === link.href && 'is-active']}
+          href={link.href}
+          target={link.external ? '_blank' : undefined}
+          rel={link.external ? 'noreferrer' : undefined}
+          aria-current={active === link.href ? 'page' : undefined}>{link.label}</a>
       ))}
     </div>
 
     <div id="nav-links-mobile" class="nav-links-mobile">
       {links.map((link) => (
-        <a class:list={['nav-link', active === link.href && 'is-active']} href={link.href} aria-current={active === link.href ? 'page' : undefined}>{link.label}</a>
+        <a
+          class:list={['nav-link', link.external && 'nav-link-booking', active === link.href && 'is-active']}
+          href={link.href}
+          target={link.external ? '_blank' : undefined}
+          rel={link.external ? 'noreferrer' : undefined}
+          aria-current={active === link.href ? 'page' : undefined}>{link.label}</a>
       ))}
     </div>
   </div>

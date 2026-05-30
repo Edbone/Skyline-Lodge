@@ -269,6 +269,16 @@ textarea {
   color: #fff;
 }
 
+.nav-link-booking {
+  background: var(--text);
+  color: #fff;
+}
+
+.nav-link-booking:hover {
+  color: #fff;
+  background: var(--accent);
+}
+
 .hamburger {
   display: none;
   align-items: center;
