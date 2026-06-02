@@ -3,7 +3,6 @@ const {
   images,
   eyebrow = 'Gallery preview',
   title = 'A photo-first retreat',
-  
   sectionId = 'photo-preview'
 } = Astro.props;
 ---
@@ -14,7 +13,7 @@ const {
         <p class="eyebrow">{eyebrow}</p>
         <h2 class="section-title">{title}</h2>
       </div>
-      <p class="section-subtitle">{subtitle}</p>
+      {Astro.props.subtitle && <p class="section-subtitle">{Astro.props.subtitle}</p>}
     </div>
 
     <div class="preview-grid" style="margin-top: 2rem;">
